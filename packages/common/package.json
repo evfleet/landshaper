@@ -1,0 +1,14 @@
+{
+  "name": "@landshaper/common",
+  "version": "0.1.0",
+  "license": "ISC",
+  "author": "Evan Fleet",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
+}
