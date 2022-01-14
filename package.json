@@ -1,0 +1,19 @@
+{
+  "name": "landshaper",
+  "private": true,
+  "license": "ISC",
+  "workspaces": [
+    "./packages/*"
+  ],
+  "scripts": {
+    "commit": "cz"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
