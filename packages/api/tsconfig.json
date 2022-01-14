@@ -1,11 +1,23 @@
 {
   "compilerOptions": {
+    /* Language and Environment */
     "lib": ["es2021"],
     "target": "es2021",
+
+    /* Modules */
     "module": "commonjs",
-    "strict": true,
+
+    /* Emit */
+    "outDir": "./dist",
+
+    /* Interop Constraints */
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking */
+    "strict": true,
+
+    /* Completeness */
+    "skipLibCheck": true,
   }
 }
