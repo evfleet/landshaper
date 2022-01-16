@@ -4,7 +4,8 @@
   "license": "ISC",
   "author": "Evan Fleet",
   "scripts": {
-    "start:dev": "tsnd ./src/index.ts"
+    "start:dev": "tsnd ./src/index.ts",
+    "test": "jest"
   },
   "dependencies": {
     "express": "^4.17.2"
