@@ -8,13 +8,17 @@
   ],
   "scripts": {
     "commit": "cz",
+    "lint": "eslint ./packages/web",
+    "lint:fix": "eslint --fix ./packages/web",
     "test": "jest"
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.7.0",
     "jest": "^27.4.7",
+    "prettier": "^2.5.1",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.4"
   },
