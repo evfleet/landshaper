@@ -30,6 +30,7 @@
     "skipLibCheck": true
   },
   "exclude": [
-    "jest.config.ts"
+    ".eslintrc.js",
+    "jest.config.ts",
   ]
 }
