@@ -1,5 +1,4 @@
-import { DataTypes, Model, Optional } from 'sequelize';
-import database from '../config/database';
+import { DataTypes, ModelDefined, Optional, Sequelize } from 'sequelize';
 
 interface UserAttributes {
   id: string;
@@ -7,15 +6,15 @@ interface UserAttributes {
 
 type UserCreationAttributes = Optional<UserAttributes, 'id'>;
 
-interface UserInstance extends Model<UserAttributes, UserCreationAttributes>, UserAttributes {
-  createdAt?: Date;
-  updatedAt?: Date;
-}
+export type UserModel = ModelDefined<UserAttributes, UserCreationAttributes>;
 
-const User = database.define<UserInstance>('user', {
-  id: {
-    type: DataTypes.UUID
-  }
-});
+export default (sequelize: Sequelize) => {
+  const User: UserModel = sequelize.define('user', {
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true
+    }
+  });
 
-export default User;
+  return User;
+};

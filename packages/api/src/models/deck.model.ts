@@ -1,6 +1,4 @@
-import { DataTypes, Model, Optional } from 'sequelize';
-import database from '../config/database';
-import User from './user.model';
+import { DataTypes, ModelDefined, Optional, Sequelize } from 'sequelize';
 
 interface DeckAttributes {
   id: string;
@@ -8,20 +6,15 @@ interface DeckAttributes {
 
 type DeckCreationAttributes = Optional<DeckAttributes, 'id'>;
 
-interface DeckInstance extends Model<DeckAttributes, DeckCreationAttributes>, DeckAttributes {
-  createdAt?: Date;
-  updatedAt?: Date;
-}
+export type DeckModel = ModelDefined<DeckAttributes, DeckCreationAttributes>;
 
-const Deck = database.define<DeckInstance>('deck', {
-  id: {
-    type: DataTypes.UUID
-  }
-});
+export default (sequelize: Sequelize) => {
+  const Deck: DeckModel = sequelize.define('deck', {
+    id: {
+      type: DataTypes.UUID,
+      primaryKey: true
+    }
+  });
 
-Deck.belongsTo(User, {
-  foreignKey: 'creatorId',
-  as: 'creator'
-});
-
-export default Deck;
+  return Deck;
+};
