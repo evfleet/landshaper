@@ -4,14 +4,18 @@
   "license": "ISC",
   "author": "Evan Fleet",
   "scripts": {
-    "start:dev": "tsnd ./src/server.ts",
+    "start:dev": "tsnd ./src/index.ts",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "jest",
     "test:e2e": "jest --config ./test/jest-e2e.config.ts"
   },
   "dependencies": {
+    "dotenv": "^13.0.1",
     "express": "^4.17.2",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.13.0",
     "supertest": "^6.2.1"
   },
   "devDependencies": {
