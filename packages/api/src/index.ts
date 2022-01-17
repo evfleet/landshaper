@@ -1,11 +1,15 @@
+import 'dotenv/config';
+import database from './config/database';
+import logger from './loaders/logger';
 import app from './server';
 
 const port = process.env.PORT || 3000;
 
-app.listen(() => {
+app.listen(port, async () => {
   try {
-    console.log(`Server listening on port ${port}`);
+    await database.sync({ force: true });
+    logger.info(`Server started on port ${port}`);
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 });
