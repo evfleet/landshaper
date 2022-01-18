@@ -11,6 +11,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.config.ts"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "bcrypt": "^5.0.1",
     "dotenv": "^13.0.1",
     "express": "^4.17.2",
     "morgan": "^1.10.0",
