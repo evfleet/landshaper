@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
-import { DataTypes, Model, ModelDefined, Optional, Sequelize } from 'sequelize';
+import { DataTypes, Model, Optional } from 'sequelize';
+import sequelize from '../loaders/sequelize';
 
 interface UserAttributes {
   id: string;
@@ -8,48 +9,52 @@ interface UserAttributes {
   password: string;
 }
 
-type UserCreationAttributes = Optional<UserAttributes, 'id'>;
+export interface UserInput extends Optional<UserAttributes, 'id'> {}
 
-export type UserModel = ModelDefined<UserAttributes, UserCreationAttributes>;
+export interface UserOutput extends Required<UserAttributes> {}
 
-export type UserInstance = Model<UserAttributes, UserCreationAttributes>;
+class User extends Model<UserAttributes, UserInput> implements UserAttributes {
+  declare id: string;
+  declare email: string;
+  declare username: string;
+  declare password: string;
 
-export default (sequelize: Sequelize) => {
-  const User: UserModel = sequelize.define(
-    'user',
-    {
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
-      },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
-      },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      verified: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
-      }
+  declare readonly createdAt: Date;
+  declare readonly updatedAt: Date;
+}
+
+User.init({
+  id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
+}, {
+  sequelize,
+  hooks: {
+    beforeCreate: (user: User) => {
+      user.password = bcrypt.hashSync(user.password, 10);
     },
-    {
-      hooks: {
-        beforeCreate(user: any) {
-          user.password = bcrypt.hashSync(user.password, 10);
-        }
+    beforeUpdate: (user: User) => {
+      if (user.changed('password')) {
+        user.password = bcrypt.hashSync(user.password, 10);
       }
     }
-  );
+  }
+});
 
-  return User;
-};
+export default User;

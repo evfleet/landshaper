@@ -1,10 +1,10 @@
 import { Op } from 'sequelize';
 import { UserServiceInterface } from '../interfaces/services/user.interface';
-import database from '../loaders/sequelize';
+import { User } from '../models';
 
 const userService: UserServiceInterface = {
   findOne: async ({ email, username }) => {
-    return database.User.findOne({
+    return User.findOne({
       where: {
         [Op.or]: [{ email }, { username }]
       }
@@ -12,7 +12,7 @@ const userService: UserServiceInterface = {
   },
 
   create: async ({ email, username, password }) => {
-    return database.User.create({ email, username, password });
+    return User.create({ email, username, password });
   }
 };
 
