@@ -1,7 +1,7 @@
-import { UserInstance } from '../../models/user.model';
+import User from '../../models/user.model';
 
 export interface UserServiceInterface {
-  findOne({ email, username }: { email: string; username: string }): Promise<UserInstance | null>;
+  findOne({ email, username }: { email: string; username: string }): Promise<User | null>;
 
   create({
     email,
@@ -11,5 +11,5 @@ export interface UserServiceInterface {
     email: string;
     username: string;
     password: string;
-  }): Promise<UserInstance>;
+  }): Promise<User>;
 }
