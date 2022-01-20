@@ -6,6 +6,8 @@ import sequelize from '../loaders/sequelize';
 import Card from '../models/card.model';
 import formatCards from './utils/format-cards';
 
+// TODO: Add a cron job to run this every week?
+
 const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 const fetchCards = async (url: string, t: Transaction) => {
