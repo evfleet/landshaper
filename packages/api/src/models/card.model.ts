@@ -1,4 +1,4 @@
-import { DataTypes, Model, Optional } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import sequelize from '../loaders/sequelize';
 
 interface CardAttributes {
@@ -32,11 +32,7 @@ interface CardAttributes {
   flavor_text: string;
 }
 
-export interface CardInput extends Optional<CardAttributes, 'id'> {}
-
-export interface CardOutput extends Required<CardAttributes> {}
-
-class Card extends Model<CardAttributes, CardInput> implements CardAttributes {
+class Card extends Model<CardAttributes> implements CardAttributes {
   declare id: string;
   declare name: string;
   declare mtgo_id: number;
@@ -70,7 +66,6 @@ class Card extends Model<CardAttributes, CardInput> implements CardAttributes {
 Card.init({
   id: {
     type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
     primaryKey: true
   },
   name: {
@@ -79,15 +74,15 @@ Card.init({
   },
   mtgo_id: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: true
   },
   arena_id: { 
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: true
   },
   tcgplayer_id: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: true
   },
   released_at: {
     type: DataTypes.DATE,
@@ -95,7 +90,7 @@ Card.init({
   },
   layout: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   },
   card_faces: {
     type: DataTypes.ARRAY(DataTypes.JSON),
@@ -103,23 +98,23 @@ Card.init({
   },
   image_uris: {
     type: DataTypes.JSON,
-    allowNull: false
+    allowNull: true
   },
   mana_cost: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   },
   cmc: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: true
   },
   type_line: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   },
   oracle_text: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.TEXT,
+    allowNull: true
   },
   loyalty: {
     type: DataTypes.STRING,
@@ -127,11 +122,11 @@ Card.init({
   },
   colors: {
     type: DataTypes.ARRAY(DataTypes.STRING),
-    allowNull: false
+    allowNull: true
   },
   color_identity: {
     type: DataTypes.ARRAY(DataTypes.STRING),
-    allowNull: false
+    allowNull: true
   },
   keywords: {
     type: DataTypes.ARRAY(DataTypes.STRING),
@@ -150,8 +145,8 @@ Card.init({
     allowNull: false
   },
   flavor_text: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.TEXT,
+    allowNull: true
   }
 }, {
   sequelize,
