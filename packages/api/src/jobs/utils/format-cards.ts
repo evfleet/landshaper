@@ -1,0 +1,25 @@
+export default (data: any) => {
+  return data.map((card: any) => ({
+    id: card.id,
+    name: card.name,
+    mtgo_id: card.mtgo_id,
+    arena_id: card.arena_id,
+    tcgplayer_id: card.tcgplayer_id,
+    released_at: card.released_at,
+    layout: card.layout,
+    card_faces: card.card_faces,
+    image_uris: card.image_uris,
+    mana_cost: card.mana_cost,
+    cmc: card.cmc,
+    type_line: card.type_line,
+    oracle_text: card.oracle_text,
+    loyalty: card.loyalty,
+    colors: card.colors,
+    color_identity: card.color_identity,
+    keywords: card.keywords,
+    set_code: card.set,
+    rarity: card.rarity,
+    collector_number: card.collector_number,
+    flavor_text: card.flavor_text,
+  }));
+};

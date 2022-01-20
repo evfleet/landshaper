@@ -1,6 +1,6 @@
 {
   "name": "@landshaper/api",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "license": "ISC",
   "author": "Evan Fleet",
   "scripts": {
@@ -8,11 +8,13 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "test": "jest",
-    "test:e2e": "jest --config ./test/jest-e2e.config.ts"
+    "test:e2e": "jest --config ./test/jest-e2e.config.ts",
+    "scraper": "tsnd ./src/jobs/scraper.ts"
   },
   "dependencies": {
-    "@types/bcrypt": "^5.0.0",
+    "axios": "^0.25.0",
     "bcrypt": "^5.0.1",
+    "cron": "^1.8.2",
     "dotenv": "^13.0.1",
     "express": "^4.17.2",
     "morgan": "^1.10.0",
@@ -23,6 +25,8 @@
     "winston": "^3.4.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cron": "^1.7.3",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.0",
     "@types/morgan": "^1.9.3",
